@@ -1,0 +1,21 @@
+# Battery Limit Toggler
+
+A simple GUI to toggle the battery charging limit (conservation mode) on Lenovo IdeaPad laptops running on Linux Mint.
+
+Build:  ./build.sh   	  - needs gcc (or clang, but I havent tried it) and libx11-dev
+Run:    ./dist/main       - may ask for your password when toggling
+
+The conservation mode path is _hardcoded_ in main.c and may be different on other laptops.
+-----------------------------------------------------------------------
+Manual commands:
+
+# Find battery charging limit info
+# 1 - On
+# 0 - Off
+cat /sys/devices/pci0000:00/0000:00:1f.0/PNP0C09:00/VPC2004:00/conservation_mode
+
+# Disable battery charging limit
+echo 0 | sudo tee /sys/devices/pci0000:00/0000:00:1f.0/PNP0C09:00/VPC2004:00/conservation_mode
+
+# Enable battery charging limit
+echo 1 | sudo tee /sys/devices/pci0000:00/0000:00:1f.0/PNP0C09:00/VPC2004:00/conservation_mode
